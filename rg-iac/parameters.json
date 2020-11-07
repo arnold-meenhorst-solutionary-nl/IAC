@@ -11,7 +11,8 @@
        "tags": {
             "value": {
                 "eigenaar": "Arnold Meenhorst",
-                "voorkeur": "69"
+              "voorkeur": "69",
+              "dummy": "lekker"
             }
         }
     }
