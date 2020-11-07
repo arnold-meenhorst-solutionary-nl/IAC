@@ -21,7 +21,7 @@ steps:
     csmParametersFileLink: 'https://raw.githubusercontent.com/arnold-meenhorst-solutionary-nl/IAC/main/rg-iac/parameters.json'
     deploymentMode: 'Incremental'
 
-    - task: AzureResourceManagerTemplateDeployment@4
+ - task: AzureResourceManagerTemplateDeployment@4
   inputs:
     deploymentScope: 'Subscription'
     azureResourceManagerConnection: 'Pay-As-You-Go(587b142d-1301-4ab5-9532-e0c5a94ba8e6)'
