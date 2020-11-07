@@ -1,0 +1,11 @@
+# Starter pipeline
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Subscription'
+    azureResourceManagerConnection: 'Pay-As-You-Go(587b142d-1301-4ab5-9532-e0c5a94ba8e6)'
+    subscriptionId: '587b142d-1301-4ab5-9532-e0c5a94ba8e6'
+    location: 'West Europe'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/arnold-meenhorst-solutionary-nl/IAC/main/rg-iac/template.json?token=AOLOILQOASGKXDAIAEXWMTS7U3TLC'
+    csmParametersFileLink: 'https://raw.githubusercontent.com/arnold-meenhorst-solutionary-nl/IAC/main/rg-iac/parameters.json?token=AOLOILVAVRVC4BR7XB2JXLS7U3TNU'
+    deploymentMode: 'Incremental'
