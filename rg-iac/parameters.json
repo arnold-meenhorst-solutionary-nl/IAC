@@ -8,8 +8,10 @@
         "rgLocation": {
             "value": "westeurope"
         },
-        "tags": {
-            "value": {}
+       "tags": {
+            "value": {
+                "eigenaar": "Arnold Meenhorst"
+            }
         }
     }
 }
