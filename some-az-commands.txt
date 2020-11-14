@@ -5,3 +5,5 @@ az group create -n sql
 az postgres flexible-server create --resource-group sql --name pg240669 --admin-user username ^
 --admin-password password --sku-name Standard_D4s_v3 --tier GeneralPurpose --public-access 0.0.0.0 ^
 --storage-size 512 --tags "key=value" --version 12
+
+az group delete -g sql -y
