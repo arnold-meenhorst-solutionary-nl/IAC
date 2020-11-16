@@ -1,0 +1,6 @@
+az configure --defaults location=westeurope
+
+az group create -n management
+az group create -n connectivity
+az group create -n identity
+
