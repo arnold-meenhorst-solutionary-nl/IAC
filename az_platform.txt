@@ -1,5 +1,32 @@
+#
+# configure defaults
+#
 az configure --defaults location=westeurope
 
+#
+# create management groups
+#
+# level 1
+az account management-group create --name mg-pg --display-name "mg-pg" 
+# level 2
+az account management-group create --name mg-pg-platform --display-name "mg-pg-platform" --parent mg-pg
+az account management-group create --name mg-pg-landingzones --display-name "mg-pg-landingzones" --parent mg-pg
+az account management-group create --name mg-pg-sandbox --display-name "mg-pg-sandbox" --parent mg-pg
+# level 3 platform
+az account management-group create --name mg-pg-management --display-name "mg-pg-management" --parent mg-pg-platform
+az account management-group create --name mg-pg-connectivity --display-name "mg-pg-connectivity" --parent mg-pg-platform
+az account management-group create --name mg-pg-identity --display-name "mg-pg-identity" --parent mg-pg-platform
+# level 3 landingzones
+az account management-group create --name mg-pg-ia --display-name "mg-pg-ia" --parent mg-pg-landingzones
+az account management-group create --name mg-pg-delegated --display-name "mg-pg-delegated" --parent mg-pg-landingzones
+# level 4 landingzones
+az account management-group create --name mg-pg-dataplatform --display-name "mg-pg-dataplatform" --parent mg-pg-ia
+az account management-group create --name mg-pg-ia-devtst --display-name "mg-pg-ia-devtst" --parent mg-pg-ia
+az account management-group create --name mg-pg-ia-accprd --display-name "mg-pg-ia-accprd" --parent mg-pg-ia
+az account management-group create --name mg-pg-sandbox-1 --display-name "mg-pg-sandbox-1" --parent mg-pg-sandbox
+#
+# create resource groups
+#
 az group create -n management
 az group create -n connectivity
 az group create -n identity
