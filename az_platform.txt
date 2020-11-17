@@ -20,7 +20,8 @@ az account management-group create --name mg-pg-identity --display-name "mg-pg-i
 az account management-group create --name mg-pg-ia --display-name "mg-pg-ia" --parent mg-pg-landingzones
 az account management-group create --name mg-pg-delegated --display-name "mg-pg-delegated" --parent mg-pg-landingzones
 # level 4 landingzones
-az account management-group create --name mg-pg-dataplatform --display-name "mg-pg-dataplatform" --parent mg-pg-ia
+az account management-group create --name mg-pg-ia-data-devtst --display-name "mg-pg-ia-data-devtst" --parent mg-pg-ia
+az account management-group create --name mg-pg-ia-data-accprd --display-name "mg-pg-ia-data-accprd" --parent mg-pg-ia
 az account management-group create --name mg-pg-ia-devtst --display-name "mg-pg-ia-devtst" --parent mg-pg-ia
 az account management-group create --name mg-pg-ia-accprd --display-name "mg-pg-ia-accprd" --parent mg-pg-ia
 az account management-group create --name mg-pg-sandbox-1 --display-name "mg-pg-sandbox-1" --parent mg-pg-sandbox
