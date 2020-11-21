@@ -2,7 +2,7 @@ function remove-recursively($name)
 {
   #Enters the parent Level
   Write-Host "Entering the scope with $name" -ForegroundColor Green
-  $parent = Get-AzManagementGroup -GroupName $name -Expand -Recurse
+  $parent = Get-AzManagementGroup -GroupId $name -Expand -Recurse
 
   #Checks if there is any parent level.
   if($parent.Children -ne $null)
