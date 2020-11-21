@@ -1,0 +1,9 @@
+New-AzResourceGroup -Location westeurope -Name rg-pg-management
+New-AzResourceGroup -Location westeurope -Name rg-pg-deploy
+New-AzResourceGroup -Location westeurope -Name rg-pg-security
+New-AzResourceGroup -Location westeurope -Name rg-pg-connectivity
+New-AzResourceGroup -Location westeurope -Name rg-pg-privdns
+New-AzResourceGroup -Location westeurope -Name rg-pg-appgw
+New-AzResourceGroup -Location westeurope -Name rg-pg-exprout
+New-AzResourceGroup -Location westeurope -Name rg-pg-identity-hub
+New-AzResourceGroup -Location westeurope -Name rg-pg-identity-dc
