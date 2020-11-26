@@ -6,19 +6,19 @@ invoke-expression -Command .\ENV.ps1
 #
 # create subscription RG
 #
-$rg = 'sub-pg-sandbox' 
+$rg = 'sub-pg-ia-lz-prd' 
 New-AzResourceGroup -Location $location -Name $rg
 
 #
 # create network RG
 #
-$rg = 'rg-pg-sandbox-network'
+$rg = 'rg-pg-ia-lz-network-prd'
 New-AzResourceGroup -Location $location -Name $rg 
 
     # create vnet
-    $nsg = New-AzNetworkSecurityGroup -ResourceGroupName $rg -Location $location -Name "nsg-pg-sandbox" 
-    $snet = New-AzVirtualNetworkSubnetConfig -Name snet-pg-sandbox -AddressPrefix "10.81.1.0/24" -NetworkSecurityGroup $nsg
-    New-AzVirtualNetwork -Name vnet-pg-sandbox -ResourceGroupName $rg -Location $location -AddressPrefix "10.81.0.0/16" -Subnet $snet
+    $nsg = New-AzNetworkSecurityGroup -ResourceGroupName $rg -Location $location -Name "nsg-pg-ia-lz-network-prd" 
+    $snet = New-AzVirtualNetworkSubnetConfig -Name snet-pg-ia-lz-network-prd -AddressPrefix "10.46.1.0/24" -NetworkSecurityGroup $nsg
+    New-AzVirtualNetwork -Name vnet-pg-ia-lz-prd -ResourceGroupName $rg -Location $location -AddressPrefix "10.46.0.0/16" -Subnet $snet
 
 #
 # create rg-pg-sandbox-1 RG - SQL Server Serverless 
