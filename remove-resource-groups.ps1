@@ -1,0 +1,1 @@
+Remove-AzResourceGroup -Name rg-pg-ia-lz-workload-1-prd 
