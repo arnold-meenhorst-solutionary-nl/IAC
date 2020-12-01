@@ -121,6 +121,54 @@ New-AzResourceGroup -Location $location -Name $rg
     # activate
     $vnet_pg_sandbox|Set-AzVirtualNetwork
 
+    # get random number
+    $r=random
+
+    #Set the managed instance name for the new managed instance
+$instanceName = "sql-$rg-$r"
+# Set the admin login and password for your managed instance
+$miAdminSqlLogin = "SqlAdmin"
+$miAdminSqlPassword = "ChangeYourAdminPassword1"
+# Set the managed instance service tier, compute level, and license mode
+$edition = "General Purpose"
+$vCores = 8
+$maxStorage = 256
+$computeGeneration = "Gen5"
+$license = "LicenseIncluded" #"BasePrice" or LicenseIncluded if you have don't have SQL Server licence that can be used for AHB discount
+
+# Create credentials
+$secpassword = ConvertTo-SecureString $miAdminSqlPassword -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential ($miAdminSqlLogin, $secpassword)
+
+$subnet = Get-AzVirtualNetworkSubnetConfig -Name snet-pg-sandbox-4 -VirtualNetwork $vnet_pg_sandbox
+$miSubnetConfigId = $subnet.Id
+
+$NSnetworkModels = "Microsoft.Azure.Commands.Network.Models"
+$NScollections = "System.Collections.Generic"
+
+# Create a delegation
+$subnet.Delegations = New-Object "$NScollections.List``1[$NSnetworkModels.PSDelegation]"
+$delegationName = "dgManagedInstance" + (Get-Random -Maximum 1000)
+$delegation = New-AzDelegation -Name $delegationName -ServiceName "Microsoft.Sql/managedInstances"
+$subnet.Delegations.Add($delegation)
+
+$routeTableMiManagementService = New-AzRouteTable `
+                      -Name 'myRouteTableMiManagementService' `
+                      -ResourceGroupName $rg `
+                      -location $location
+Set-AzVirtualNetworkSubnetConfig -Name snet-pg-sandbox-4 -VirtualNetwork $vnet_pg_sandbox -AddressPrefix "10.81.4.0/24" -RouteTableId 'myRouteTableMiManagementService' -NetworkSecurityGroupId <String>]
+
+
+
+
+# Create managed instance
+New-AzSqlInstance -Name $instanceName `
+                      -ResourceGroupName $rg -Location $location -SubnetId $miSubnetConfigId `
+                      -AdministratorCredential $credential `
+                      -StorageSizeInGB $maxStorage -VCore $vCores -Edition $edition `
+                      -ComputeGeneration $computeGeneration -LicenseType $license
+
+
 <#
 
 Remove-AzResourceGroup -Name sub-pg-sandbox -force
